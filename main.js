@@ -1,38 +1,38 @@
 function VehicleConstructor(name, numberOfWheels, numberOfPassengers, speed, distance_travelled){
     var vehicle = {}; // the object that will be returned
-    vehicle.name = name,
-    vehicle.numberOfWheels = numberOfWheels,
-    vehicle.numberOfPassengers = numberOfPassengers,
-    vehicle.speed = speed,
-    vehicle.distance_travelled = distance_travelled,
-    vehicle.addPass = function() {
-        vehicle.numberOfPassengers += 1;
-        console.log("Passenger has been picked up! Total passengers:" + vehicle.numberOfPassengers);
-        return vehicle;
+    this.name = name,
+    this.numberOfWheels = numberOfWheels,
+    this.numberOfPassengers = numberOfPassengers,
+    this.speed = speed,
+    this.distance_travelled = distance_travelled,
+    this.addPass = function() {
+        this.numberOfPassengers += 1;
+        console.log("Passenger has been picked up! Total passengers:" + this.numberOfPassengers);
+        return this;
     },
-    vehicle.makeNoise = function() { // method that "makes noise"
-        console.log(vehicle.name + " honks loudly");
-        return vehicle;
+    this.makeNoise = function() { // method that "makes noise"
+        console.log(this.name + " honks loudly");
+        return this;
     },
-    vehicle.updateDistanceTravelled = function() {
-        vehicle.distance_travelled += vehicle.speed;
-        console.log(vehicle.speed, "******");
-        return vehicle;
+    this.updateDistanceTravelled = function() {
+        this.distance_travelled += this.speed;
+        console.log(this.speed, "*");
+        return this;
     },
-    vehicle.move = function() {
-        vehicle.updateDistanceTravelled();
-        console.log(vehicle.distance_travelled, "****");
-        vehicle.makeNoise();
-        return vehicle;
+    this.move = function() {
+        this.updateDistanceTravelled();
+        console.log(this.distance_travelled, "**");
+        this.makeNoise();
+        return this;
     },
-    vehicle.checkMiles = function() {
-        console.log(vehicle.distance_travelled);
-        return vehicle;
+    this.checkMiles = function() {
+        console.log(this.distance_travelled);
+        return this;
     }
-    return vehicle; // return the created object
+    return this; // return the created object
 }
 
-var Bike = VehicleConstructor("Bike", 2, 1, 5, 0);
+var Bike = new VehicleConstructor("Bike", 2, 1, 5, 0);
 Bike.makeNoise();
 Bike.makeNoise = function() {
     console.log(Bike.name + " rings a little bell");
@@ -40,14 +40,14 @@ Bike.makeNoise = function() {
 }
 Bike.makeNoise().move().checkMiles();
 
-var Sedan = VehicleConstructor("Sedan", 4, 4, 30, 0);
+var Sedan = new VehicleConstructor("Sedan", 4, 4, 30, 0);
 Sedan.makeNoise = function() {
     console.log("Honk! Honk!");
 }
 Sedan.makeNoise();
 
-var Bus = VehicleConstructor("Bus", 4, 18, 10, 0);
+var Bus = new VehicleConstructor("Bus", 4, 18, 10, 0);
 Bus.addPass().addPass().addPass(); // can be chained due to this function returning vehicle
 
-var Jeep = VehicleConstructor("Jeep", 2, 1, 20, 0);
-Jeep.move().move().checkMiles();
+var Jeep = new VehicleConstructor("Jeep", 2, 1, 20, 0);
+Jeep.move().move().checkMiles().move().move().checkMiles();
